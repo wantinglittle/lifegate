@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Your Group - Church Groups Repository</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+        emailjs.init('vXc5-Hh3C7fIob-j5'); // Your public key
+        });
+    </script>
+
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-header p {
+            color: #666;
+        }
+
+        .form-grid {
+            display: grid;
+            gap: 0.4rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.4rem;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .btn-secondary {
+            background: black;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="position: relative; text-align: center; width: 100%; display: flex; align-items: center; justify-content: center;">
+            <a href="index.html" class="btn-secondary" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%);">← Back to Home</a>
+            <div style="flex: 1; text-align: center;">
+                <h1 style="margin: 0;">Add Your Group</h1>
+
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="form-container">
+            <form id="groupForm" class="form-grid">
+                <div class="form-group">
+                    <label for="group-title">Group Title *</label>
+                    <input type="text" id="group-title" name="title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="group-description">Description *</label>
+                    <textarea id="group-description" name="description" rows="4" required placeholder="Describe your group's purpose, activities, and what newcomers can expect..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="contact-name">Contact Name *</label>
+                        <input type="text" id="contact-name" name="contactName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Contact Email *</label>
+                        <input type="email" id="contact-email" name="contactEmail" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact-phone">Contact Phone Number *</label>
+                    <input type="tel" id="contact-phone" name="contactPhone" placeholder="(555) 123-4567" required maxlength="14">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="meeting-day">Meeting Day *</label>
+                        <select id="meeting-day" name="day" required>
+                            <option value="">Select a day</option>
+                            <option value="Monday">Monday</option>
+                            <option value="Tuesday">Tuesday</option>
+                            <option value="Wednesday">Wednesday</option>
+                            <option value="Thursday">Thursday</p>
+                            <option value="Friday">Friday</option>
+                            <option value="Saturday">Saturday</option>
+                            <option value="Sunday">Sunday</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="meeting-time">Meeting Time *</label>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select id="meeting-hour" name="hour" style="flex: 1;" required>
+                                <option value="">Hour</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                            <select id="meeting-minute" name="minute" style="flex: 1;" required>
+                                <option value="">Min</option>
+                                <option value="00">:00</option>
+                                <option value="15">:15</option>
+                                <option value="30">:30</option>
+                                <option value="45">:45</option>
+                            </select>
+                            <select id="meeting-ampm" name="ampm" style="flex: 1;" required>
+                                <option value="">AM/PM</option>
+                                <option value="AM">AM</option>
+                                <option value="PM">PM</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="audience">Audience *</label>
+                        <select id="audience" name="audience" required>
+                            <option value="">Select audience</option>
+                            <option value="All">All</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-group">Age Group *</label>
+                        <select id="age-group" name="ageGroup" required>
+                            <option value="">Select age group</option>
+                            <option value="Teens">Teens (13-19)</option>
+                            <option value="Young Adult">Young Adult (20-29)</option>
+                            <option value="30-50">Adults (30-50)</option>
+                            <option value="50+">Seniors (50+)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="Zip Code">Zip Code *</label>
+                        <input type="text" id="zip-code" name="zipCode" required placeholder="e.g., Denver">
+                    </div>
+                    <div class="form-group">
+                        <label for="cross-streets">Closest Cross Streets *</label>
+                        <input type="text" id="cross-streets" name="crossStreets" required placeholder="e.g., Main St & Oak Ave">
+                    </div>
+                </div>
+                <small style="color: #666; font-size: 0.9rem; display: block; margin-top: -1rem; margin-bottom: 1rem;">This helps people find your location and places your group on the map</small>
+
+                <div class="form-group">
+                    <label for="additional-info">Additional Information</label>
+                    <textarea id="additional-info" name="additionalInfo" rows="3" placeholder="Any other details about your group, special requirements, or helpful information..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <a href="index.html" class="btn-secondary">Back to Home</a>
+                    <button type="submit" class="btn-primary">Submit Group</button>
+                </div>
+                <input type="hidden" name="hidden" value="yes" />
+            </form>
+        </div>
+    </main>
+
+    <script type="module" src="firebase.js"></script>
+    <script type="module" src="add-group.js"></script>
+
+</body>
+</html>

@@ -1,79 +1,168 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1a1a1a;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            color: #fff;
-        }
-        .form-container {
-            background-color: #2b2b2b;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            width: 100%;
-            max-width: 400px;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 28px;
-            color: #dcdcdc;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #dcdcdc;
-        }
-        input, textarea {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 5px;
-            background-color: #3c3c3c;
-            color: #fff;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-        input:focus, textarea:focus {
-            outline: none;
-            box-shadow: 0 0 5px rgba(81, 203, 238, 0.8);
-        }
-        textarea {
-            height: 100px;
-            resize: vertical;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #4a90e2;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #357abd;
-        }
-    </style>
+    <title>Welcome to Lifegate Community</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        (function () {
+            emailjs.init("vXc5-Hh3C7fIob-j5"); // Replace with your actual public key
+        })();
+    </script>
+
+
 </head>
-<script type="text/javascript" src="https://form.jotform.com/jsform/250536437386160"></script>
+<body>
+    <header>
+        <div class="header-logo">
+            <img src="https://lifegatedenver.com/wp-content/uploads/2025/01/Vector-1.svg" alt="Lifegate Church" height="40">
+        </div>
+        <div class="header-content">
+            <h1>Lifegate Community</h1>
+            <p>Find and connect with church community in your area</p>
+        </div>
+        <div class="header-actions">
+            <a href="add-group.html" class="add-group-btn">Add My Community</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Search, Filter and Map Section -->
+        <section class="main-content">
+            <div class="search-sidebar">
+                <div class="search-group">
+                    <label for="location-search">📍 Zip Code Search:</label>
+                    <input type="text" id="location-search" placeholder="Enter zip code or address">
+                    <button id="search-location-btn">Search</button>
+                </div>
+
+                <div class="filter-group">
+                    <label for="day-filter">Day:</label>
+                    <select id="day-filter">
+                        <option value="">All Days</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                        <option value="Saturday">Saturday</option>
+                        <option value="Sunday">Sunday</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="audience-filter">Audience:</label>
+                    <select id="audience-filter">
+                        <option value="">All</option>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="age-filter">Age Group:</label>
+                    <select id="age-filter">
+                        <option value="">All Ages</option>
+                        <option value="Teens">Teens</option>
+                        <option value="Young Adult">Young Adult</option>
+                        <option value="30-50">30-50</option>
+                        <option value="50+">50+</option>
+                    </select>
+                </div>
+
+                <div class="filter-buttons">
+                    <button id="apply-filters">Apply Filters</button>
+                    <button id="clear-filters">Clear Filters</button>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <div id="map" style="height: 500px; width: 100%;"></div>
+            </div>
+        </section>
+
+        <!-- Groups Listing Section -->
+        <section class="groups-section">
+            <h2>Communities (<span id="group-count">0</span>)</h2>
+            <div id="groups-container"></div>
+        </section>
+    </main>
+
+    <!-- Full Description Modal -->
+<div id="info-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-info">&times;</span>
+        <h3 id="info-title"></h3>
+        <p id="info-description"></p>
+        <p><strong>Day:</strong> <span id="info-day"></span></p>
+        <p><strong>Time:</strong> <span id="info-time"></span></p>
+        <p><strong>Audience:</strong> <span id="info-audience"></span></p>
+        <p><strong>Age Group:</strong> <span id="info-age-group"></span></p>
+    </div>
+</div>
+
+    <!-- Contact Form Modal -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-contact">&times;</span>
+            <h3>Contact Group</h3>
+            <form id="contact-form">
+                <input type="hidden" id="contact-group-id">
+                <div class="form-group">
+                    <label for="contact-name">Name:</label>
+                    <input type="text" id="contact-name" name="name" required>
+                </div>
+                    <div class="form-group">
+                    <label for="contact-phone">Phone:</label>
+                    <input type="text" id="contact-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
+                </div>
+                <div class="form-group">
+                    <label for="contact-email">Email:</label>
+                    <input type="email" id="contact-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact-message">Message:</label>
+                    <textarea id="contact-message" rows="4" name="message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaD2QPffJ15fk2E3VtQjDMRZStj1dMAlg">
+</script>
+
+<script type="module">
+  import { initMap } from './script.js';
+
+  // Wait until Google Maps is available, then call initMap
+  function waitForGoogleMaps() {
+    return new Promise((resolve) => {
+      if (window.google && window.google.maps) {
+        resolve();
+      } else {
+        const interval = setInterval(() => {
+          if (window.google && window.google.maps) {
+            clearInterval(interval);
+            resolve();
+          }
+        }, 100);
+      }
+    });
+  }
+
+  waitForGoogleMaps().then(() => {
+    initMap();
+  });
+</script>
+
+
+
+
+</body>
 </html>
