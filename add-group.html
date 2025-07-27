@@ -119,17 +119,29 @@
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
         }
+        .header-wrapper {
+            text-align: center;
+            padding: 1rem 1rem 0.5rem;
+        } 
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: 1.8rem;
+        }
+
 
     </style>
 </head>
 <body>
     <header>
-        <div style="position: relative; text-align: center; width: 100%; display: flex; align-items: center; justify-content: center;">
-            <a href="index.html" class="btn-secondary" style="position: absolute; left: 0; top: 50%; transform: translateY(-50%);">← Back to Home</a>
-            <div style="flex: 1; text-align: center;">
-                <h1 style="margin: 0;">Add Your Community</h1>
-
-            </div>
+        <div class="header-wrapper">
+            <a href="index.html" class="btn-secondary back-button">← Back to Home</a>
+            <h1 class="page-title">Add Your Community</h1>
         </div>
     </header>
 
