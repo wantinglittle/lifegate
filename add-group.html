@@ -12,6 +12,7 @@
         emailjs.init('vXc5-Hh3C7fIob-j5'); // Your public key
         });
     </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
         .form-container {
@@ -95,6 +96,30 @@
                 flex-direction: column;
             }
         }
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-color: white;
+            color: #333;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7z%22%20fill%3D%22%23333%22/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 10px 7px;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
     </style>
 </head>
 <body>
@@ -154,7 +179,7 @@
                     <div class="form-group">
                         <label for="meeting-time">Meeting Time *</label>
                         <div style="display: flex; gap: 0.5rem;">
-                            <select id="meeting-hour" name="hour" style="flex: 1;" required>
+                            <select id="meeting-hour" name="hour" style="flex: 1; min-width: 78px;" required>
                                 <option value="">Hour</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -176,7 +201,7 @@
                                 <option value="30">:30</option>
                                 <option value="45">:45</option>
                             </select>
-                            <select id="meeting-ampm" name="ampm" style="flex: 1;" required>
+                            <select id="meeting-ampm" name="ampm" style="flex: 1.8; min-width: 95px;" required>
                                 <option value="">AM/PM</option>
                                 <option value="AM">AM</option>
                                 <option value="PM">PM</option>
@@ -210,7 +235,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label for="Zip Code">Zip Code *</label>
-                        <input type="text" id="zip-code" name="zipCode" required placeholder="e.g., Denver">
+                        <input type="text" id="zip-code" name="zipCode" inputmode="numeric" pattern="[0-9]*" required placeholder="Enter zip code" maxlength="5" minlength="5">
                     </div>
                     <div class="form-group">
                         <label for="cross-streets">Closest Cross Streets *</label>
@@ -223,7 +248,7 @@
                     <label for="additional-info">Additional Information</label>
                     <textarea id="additional-info" name="additionalInfo" rows="3" placeholder="Any other details about your group, special requirements, or helpful information..."></textarea>
                 </div>
-
+                <div class="g-recaptcha" data-sitekey="6Lc4OpArAAAAAB28oRvNoDbwJS0Z4N71F6zxFcGe"></div>
                 <div class="form-actions">
                     <a href="index.html" class="btn-secondary">Back to Home</a>
                     <button type="submit" class="btn-primary">Submit Group</button>

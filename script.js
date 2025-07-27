@@ -141,9 +141,18 @@ async function renderGroups(groups, map, AdvancedMarkerElement) {
       const groupId = e.target.dataset.id;
       const group = groups.find(g => g.id === groupId);
       if (!group) return;
-
-      // Scroll to top so map is visible
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      
+      //Scroll up so map is in view
+      const mapElement = document.getElementById("map"); // or whatever your map's ID is
+      const offset = 20;
+      
+      const elementPosition = mapElement.getBoundingClientRect().top + window.pageYOffset;
+      
+      window.scrollTo({
+        top: elementPosition - offset,
+        behavior: 'smooth'
+      });
+      
 
       // Zoom map to about 2 mile radius (~14 zoom level)
       map.setCenter(group.coords);
