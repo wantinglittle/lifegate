@@ -89,9 +89,16 @@ async function renderGroups(groups, map, AdvancedMarkerElement) {
     });
 
     // Create card
-    const shortDesc = group.description
-      ? group.description.slice(0, 50) + (group.description.length > 50 ? "…" : "")
-      : "";
+let shortDesc = "";
+if (group.description) {
+  if (group.description.length > 40) {
+    shortDesc = group.description.slice(0, 40) + "…";
+  } else {
+    shortDesc = group.description;
+  }
+}
+
+  
 
     const div = document.createElement("div");
     div.className = "group-card";
@@ -288,14 +295,20 @@ document.getElementById("contact-form").addEventListener("submit", async functio
       to_email: groupEmail
     });
 
-    alert("Message sent successfully!");
     document.getElementById("contact-modal").style.display = "none";
+    document.getElementById("groupmsg-confirmation-modal").style.display = "block";
     this.reset();
   } catch (error) {
     console.error("EmailJS error:", error);
     alert("There was an error sending your message. Please try again later.");
   }
+
+    document.querySelector(".close-groupmsg-confirmation").addEventListener("click", function () {
+    document.getElementById("groupmsg-confirmation-modal").style.display = "none";
+  });
 });
+
+
 
 
 
