@@ -92,7 +92,7 @@ async function renderGroups(groups, map, AdvancedMarkerElement) {
 let shortDesc = "";
 if (group.description) {
   if (group.description.length > 40) {
-    shortDesc = group.description.slice(0, 40) + "…";
+    shortDesc = group.description.slice(0, 30) + "…";
   } else {
     shortDesc = group.description;
   }
