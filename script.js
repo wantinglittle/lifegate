@@ -286,7 +286,7 @@ document.getElementById("contact-form").addEventListener("submit", async functio
     return;
   }
   try {
-    await emailjs.send("service_o23istn", "template_9hiiteh", {
+    await emailjs.send("service_fmkha6h", "template_9hiiteh", {
       name,
       email,
       phone,

@@ -67,10 +67,9 @@
             <label for="age-filter">Age Group:</label>
             <select id="age-filter">
               <option value="">All Ages</option>
+              <option value="Kids">Kids</option>
               <option value="Teens">Teens</option>
-              <option value="Young Adult">Young Adult</option>
-              <option value="30-50">30-50</option>
-              <option value="50+">50+</option>
+              <option value="Adult">Adult</option>
             </select>
           </div>
 
@@ -117,6 +116,45 @@
         <h3>Contact Leader</h3>
         <form id="contact-form">
           <input type="hidden" id="contact-group-id">
+          <div class="form-group">
+            <label for="contact-name">Name:</label>
+            <input type="text" id="contact-name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-phone">Phone:</label>
+            <input type="text" id="contact-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
+          </div>
+          <div class="form-group">
+            <label for="contact-email">Email:</label>
+            <input type="email" id="contact-email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message:</label>
+            <textarea id="contact-message" rows="4" name="message" required></textarea>
+          </div>
+          <button type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="groupmsg-confirmation-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-groupmsg-confirmation">&times;</span>
+        <h3 id="info-title">Your message has been sent!</h3>
+        <p id="groupmsg-description-text">
+          You should hear back from the community leader in the next few days. Please keep an eye on your junk folder as messages often end up there.
+          <br><br>Thank you for reaching out!
+        </p>
+      </div>
+    </div>
+
+        <!-- Contact Church Modal -->
+    <div id="contact-church" class="modal">
+      <div class="modal-content">
+        <span class="close-contact">&times;</span>
+        <h3>Contact Church</h3>
+        <form id="contact-form">
           <div class="form-group">
             <label for="contact-name">Name:</label>
             <input type="text" id="contact-name" name="name" required>

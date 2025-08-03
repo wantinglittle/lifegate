@@ -321,19 +321,24 @@
             <label for="age-group">Age Group *</label>
             <select id="age-group" name="ageGroup" required>
               <option value="">Select age group</option>
-              <option value="Teens">Teens (13-19)</option>
-              <option value="Young Adult">Young Adult (20-29)</option>
-              <option value="30-50">Adults (30-50)</option>
-              <option value="50+">Seniors (50+)</option>
+              <option value="All-ages">All Ages</option>
+              <option value="Kids">Kids</option>
+              <option value="Teens">Teens</option>
+              <option value="Adult">Adults</option>
             </select>
           </div>
         </div>
-
         <div class="form-row">
+          <div class="form-group">
+            <label for="City">City *</label>
+            <input type="text" id="city" name="city" required placeholder="Enter city" />
+          </div>
           <div class="form-group">
             <label for="Zip Code">Zip Code *</label>
             <input type="text" id="zip-code" name="zipCode" inputmode="numeric" pattern="[0-9]*" required placeholder="Enter zip code" maxlength="5" minlength="5" />
           </div>
+        </div>
+        <div class="form-row">
           <div class="form-group">
             <label for="cross-streets">Closest Cross Streets *</label>
             <input type="text" id="cross-streets" name="crossStreets" required placeholder="e.g., Main St & Oak Ave" />
