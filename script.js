@@ -22,10 +22,12 @@ let allGroups = [];
 
 const initialCenter = { lat: 39.7392, lng: -104.9903 };
 const initialZoom = 10;
-const geocoder = new google.maps.Geocoder();
+let geocoder;
 
 export async function initMap() {
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+  geocoder = new google.maps.Geocoder();
 
   map = new google.maps.Map(document.getElementById("map"), {
     center: initialCenter,
@@ -60,121 +62,120 @@ async function fetchGroupsWithCoords() {
 }
 
 async function renderGroups(groups, map, AdvancedMarkerElement) {
-  // Clear old markers and cards
+  // Clear old markers
   markers.forEach(marker => marker.map = null);
   markers = [];
 
   const container = document.getElementById("groups-container");
-  const oldCards = container.querySelectorAll(".group-card");
-  oldCards.forEach(card => card.classList.add("fade-out"));
-  await new Promise(resolve => setTimeout(resolve, 200)); // wait for fade-out animation
-  container.innerHTML = "";
+  const existingCards = container.querySelectorAll(".group-card");
 
-  groups.forEach((group, index) => {
-    const hour = group.hour || "";
-    const minute = group.minute || "00";
-    const ampm = group.ampm || "";
-    const timeStr = hour && ampm ? `${hour}:${minute.padStart(2, "0")} ${ampm}` : "N/A";
-
-    const marker = new AdvancedMarkerElement({
-      map,
-      position: group.coords,
-      title: group.title || "Group"
-    });
-    markers.push(marker);
-
-    // Marker click opens modal
-    marker.addListener("click", () => {
-      showGroupModal(group);
-    });
-
-    // Create card
-let shortDesc = "";
-if (group.description) {
-  if (group.description.length > 40) {
-    shortDesc = group.description.slice(0, 30) + "…";
-  } else {
-    shortDesc = group.description;
-  }
-}
-
-  
-
-    const div = document.createElement("div");
-    div.className = "group-card";
-    div.innerHTML = `
-      <h3>${group.title}</h3>
-      <p>${shortDesc}</p>
-      <p><strong>Day:</strong> ${group.day || "N/A"}</p>
-      <p><strong>Time:</strong> ${timeStr}</p>
-      <p><strong>Audience:</strong> ${group.audience || "N/A"}</p>
-      <p><strong>Age Group:</strong> ${group.ageGroup || "N/A"}</p>
-      <button class="more-info-btn" data-index="${index}">More Info</button>
-      <button class="contact-btn" data-title="${group.title}" data-email="${group.contactEmail || ""}">Contact</button>
-      <button class="view-on-map-btn" data-id="${group.id}">View on Map</button>
-    `;
-    container.appendChild(div);
-    setTimeout(() => {
-      div.classList.add("show");
-    }, 10);
+  // Apply fade-out to all existing cards
+  existingCards.forEach(card => {
+    card.classList.remove("show");
+    card.classList.add("fade-out");
   });
 
-  document.getElementById("group-count").textContent = groups.length;
+  // Wait for fade-out animation to complete before clearing
+  setTimeout(() => {
+    container.innerHTML = ""; // Clear all cards after animation
 
-  // More Info button
-  document.querySelectorAll(".more-info-btn").forEach(btn => {
-    btn.addEventListener("click", e => {
-      const i = parseInt(e.target.dataset.index);
-      showGroupModal(groups[i]);
-    });
-  });
+    // Force reflow to ensure new cards start with correct initial state
+    container.offsetHeight; // Trigger reflow
 
-  // Contact button
-  document.querySelectorAll(".contact-btn").forEach((btn, i) => {
-    btn.addEventListener("click", e => {
-      const title = btn.dataset.title || "";
-      const email = btn.dataset.email || "";
-      document.getElementById("contact-modal").style.display = "block";
-      document.getElementById("contact-group-id").value = btn.dataset.groupId || ""; // for tracking
-      document.getElementById("contact-form").setAttribute("data-group-title", title || "");
-      document.getElementById("contact-form").setAttribute("data-group-email", email || "");
-  });
-});
+    // Add new cards
+    groups.forEach((group, index) => {
+      const hour = group.hour || "";
+      const minute = (group.minute || "00").toString().padStart(2, "0");
+      const ampm = group.ampm || "";
+      const timeStr = hour && ampm ? `${hour}:${minute} ${ampm}` : "N/A";
 
-
-  // View on Map button
-  document.querySelectorAll(".view-on-map-btn").forEach(btn => {
-    btn.addEventListener("click", e => {
-      const groupId = e.target.dataset.id;
-      const group = groups.find(g => g.id === groupId);
-      if (!group) return;
-      
-      //Scroll up so map is in view
-      const mapElement = document.getElementById("map"); // or whatever your map's ID is
-      const offset = 20;
-      
-      const elementPosition = mapElement.getBoundingClientRect().top + window.pageYOffset;
-      
-      window.scrollTo({
-        top: elementPosition - offset,
-        behavior: 'smooth'
+      const marker = new AdvancedMarkerElement({
+        map,
+        position: group.coords,
+        title: group.title || "Group"
       });
-      
+      markers.push(marker);
 
-      // Zoom map to about 2 mile radius (~14 zoom level)
-      map.setCenter(group.coords);
-      map.setZoom(14);
+      marker.addListener("click", () => {
+        showGroupModal(group);
+      });
+
+      let shortDesc = "";
+      if (group.description) {
+        shortDesc = group.description.length > 40
+          ? group.description.slice(0, 40) + "…"
+          : group.description;
+      }
+
+      const div = document.createElement("div");
+      div.className = "group-card";
+      div.innerHTML = `
+        <h3>${group.title || "No Title"}</h3>
+        <p>${shortDesc}</p>
+        <p><strong>Day:</strong> ${group.day || "N/A"}</p>
+        <p><strong>Time:</strong> ${timeStr}</p>
+        <p><strong>Audience:</strong> ${group.audience || "N/A"}</p>
+        <p><strong>Age Group:</strong> ${group.ageGroup || "N/A"}</p>
+        <button class="more-info-btn" data-index="${index}">More Info</button>
+        <button class="contact-btn" data-title="${group.title || ""}" data-email="${group.contactEmail || ""}">Contact</button>
+        <button class="view-on-map-btn" data-id="${group.id}">View on Map</button>
+      `;
+      container.appendChild(div);
+
+      // Trigger fade-in after a slightly longer delay
+      setTimeout(() => div.classList.add("show"), 50);
     });
-  });
+
+    // Update group count
+    document.getElementById("group-count").textContent = groups.length;
+
+    // Attach event listeners
+    document.querySelectorAll(".more-info-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const i = parseInt(e.target.dataset.index);
+        showGroupModal(groups[i]);
+      });
+    });
+
+    document.querySelectorAll(".contact-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const title = btn.dataset.title || "";
+        const email = btn.dataset.email || "";
+        document.getElementById("contact-modal").style.display = "block";
+        document.getElementById("contact-form").setAttribute("data-group-title", title);
+        document.getElementById("contact-form").setAttribute("data-group-email", email);
+      });
+    });
+
+    document.querySelectorAll(".view-on-map-btn").forEach(btn => {
+      btn.addEventListener("click", e => {
+        const groupId = e.target.dataset.id;
+        const group = groups.find(g => g.id === groupId);
+        if (!group) return;
+
+        const mapElement = document.getElementById("map");
+        const offset = 20;
+        const elementPosition = mapElement.getBoundingClientRect().top + window.pageYOffset;
+
+        window.scrollTo({
+          top: elementPosition - offset,
+          behavior: 'smooth'
+        });
+
+        map.setCenter(group.coords);
+        map.setZoom(14);
+      });
+    });
+  }, 300); // Match CSS transition duration
 }
 
 function showGroupModal(group) {
   const hour = group.hour || "";
-  const minute = group.minute || "00";
+  const minute = (group.minute || "00").toString().padStart(2, "0");
   const ampm = group.ampm || "";
-  const timeStr = hour && ampm ? `${hour}:${minute.padStart(2, "0")} ${ampm}` : "N/A";
+  const timeStr = hour && ampm ? `${hour}:${minute} ${ampm}` : "N/A";
 
-  document.getElementById("info-title").textContent = group.title;
+  document.getElementById("info-title").textContent = group.title || "No Title";
   document.getElementById("info-description").textContent = group.description || "No description available.";
   document.getElementById("info-day").textContent = group.day || "N/A";
   document.getElementById("info-time").textContent = timeStr;
@@ -218,14 +219,13 @@ function setupFilters(AdvancedMarkerElement) {
       console.error("ZIP search failed:", err);
     }
   });
-  
+
   zipInput.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent form submission
-      searchBtn.click();  // Trigger the search button logic
+      e.preventDefault();
+      searchBtn.click();
     }
   });
-  
 
   document.getElementById("clear-filters").addEventListener("click", () => {
     dayFilter.value = "";
@@ -303,16 +303,12 @@ document.getElementById("contact-form").addEventListener("submit", async functio
     alert("There was an error sending your message. Please try again later.");
   }
 
-    document.querySelector(".close-groupmsg-confirmation").addEventListener("click", function () {
+  document.querySelector(".close-groupmsg-confirmation").addEventListener("click", function () {
     document.getElementById("groupmsg-confirmation-modal").style.display = "none";
   });
 });
 
-
-
-
-
-// format phone number for contact modal
+// Format phone number for contact modal
 const phoneInput = document.getElementById("contact-phone");
 phoneInput.addEventListener("input", (e) => {
   let digits = e.target.value.replace(/\D/g, "");
@@ -329,5 +325,3 @@ phoneInput.addEventListener("input", (e) => {
 
   e.target.value = formatted;
 });
-
-// Use emailjs to send info from contact form

@@ -1,184 +1,144 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to Lifegate Community</title>
-    <link href="style.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>
-        (function () {
-            emailjs.init("vXc5-Hh3C7fIob-j5"); // Replace with your actual public key
-        })();
-    </script>
-
-
+    <title>LIFEGATE Denver - Community Directory</title>
+    <meta name="description" content="Connect with like-minded believers, grow in faith together, and find your place in our vibrant LIFEGATE Denver community. Discover Bible study communities, prayer circles, social activities and more.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Open Graph tags -->
+    <meta property="og:title" content="LIFEGATE Denver - Community Directory">
+    <meta property="og:description" content="Connect with like-minded believers, grow in faith together, and find your place in our vibrant LIFEGATE Denver community.">
+    <meta property="og:type" content="website">
+    
+    <link rel="stylesheet" href="splash-style.css">
 </head>
 <body>
-    <div class="wrapper">
-    <header>
-        <div class="header-logo">
-            <img src="images/lg_logo.svg" alt="Lifegate Church" height="40">
-        </div>
-        <div class="header-content">
-            <h1>Lifegate Community</h1>
-            <p>Find and connect with church community</p>
-        </div>
-        <div class="header-actions">
-            <a href="add-group.html" class="add-group-btn">Add My Community</a>
-        </div>
-    </header>
-
-    <main>
-        <!-- Search, Filter and Map Section -->
-        <section class="main-content">
-            <div class="search-sidebar">
-                <div class="search-group">
-                    <label for="location-search">📍 Location Search:</label>
-                    <input type="text" id="location-search" placeholder="Enter zip code or address">
-                    <button id="search-location-btn">Search</button>
+    <div class="app">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <!-- Floating Background Icons -->
+            <div class="floating-bg">
+                <div class="floating-icon icon-1">
+                    <i class="fas fa-heart"></i>
                 </div>
-
-                <div class="filter-group">
-                    <label for="day-filter">Day:</label>
-                    <select id="day-filter">
-                        <option value="">All Days</option>
-                        <option value="Monday">Monday</option>
-                        <option value="Tuesday">Tuesday</option>
-                        <option value="Wednesday">Wednesday</option>
-                        <option value="Thursday">Thursday</option>
-                        <option value="Friday">Friday</option>
-                        <option value="Saturday">Saturday</option>
-                        <option value="Sunday">Sunday</option>
-                    </select>
+                <div class="floating-icon icon-2">
+                    <i class="fas fa-users"></i>
                 </div>
-
-                <div class="filter-group">
-                    <label for="audience-filter">Audience:</label>
-                    <select id="audience-filter">
-                        <option value="">All</option>
-                        <option value="Men">Men</option>
-                        <option value="Women">Women</option>
-                    </select>
+                <div class="floating-icon icon-3">
+                    <i class="fas fa-heart"></i>
                 </div>
-
-                <div class="filter-group">
-                    <label for="age-filter">Age Group:</label>
-                    <select id="age-filter">
-                        <option value="">All Ages</option>
-                        <option value="Teens">Teens</option>
-                        <option value="Young Adult">Young Adult</option>
-                        <option value="30-50">30-50</option>
-                        <option value="50+">50+</option>
-                    </select>
+                <div class="floating-icon icon-4">
+                    <i class="fas fa-book-open"></i>
                 </div>
-
-                <div class="filter-buttons">
-                    <button id="apply-filters">Apply Filters</button>
-                    <button id="clear-filters">Clear Filters</button>
+                <div class="floating-icon icon-5">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="floating-icon icon-6">
+                    <i class="fas fa-users"></i>
                 </div>
             </div>
-
-            <div class="map-container">
-                <div id="map" style="height: 500px; width: 100%;"></div>
+            
+            <!-- Main Content -->
+            <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="https://lifegatedenver.com/wp-content/uploads/2025/01/Vector-1.svg" alt="LIFEGATE Denver Logo" class="logo-image">
+                </div>
+                <div class="hero-text">
+                    <p class="hero-tagline">Community Directory</p>
+                    <p class="hero-subtitle">
+                        Connect with like-minded believers, grow in faith together, and find your place in our vibrant community
+                    </p>
+                </div>
+                
+                <!-- CTA Buttons -->
+                <div class="cta-buttons">
+                    <a href="find-comm.html" class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                        Explore Communities
+                    </a>
+                    <a href="add-group.html" class="btn btn-secondary">
+                        <i class="fas fa-plus"></i>
+                        Add Your Community
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <i class="fas fa-chevron-down"></i>
             </div>
         </section>
 
-        <!-- Groups Listing Section -->
-        <section class="groups-section">
-            <h2>Communities (<span id="group-count">0</span>)</h2>
-            <div id="groups-container"></div>
+        <!-- Communities Showcase Section -->
+        <section class="communities-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Discover Your Community</h2>
+                    <p class="section-subtitle">
+                        From Bible studies to board games, prayer circles to book clubs - find where you belong
+                    </p>
+                </div>
+                
+                <!-- Communities Grid -->
+                <div class="communities-grid" id="communities-grid">
+                    <!-- Communities will be populated by JavaScript -->
+                </div>
+            </div>
         </section>
-    </main>
-    <footer>
-        <div><h4>Questions or suggestions about this site or about Lifegate Community?</h4></div>
-        <div class="msg-church"><h4>Click here to message the church</h4></div>
-    </footer>
 
-    <!-- Full Description Modal -->
-<div id="info-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-info">&times;</span>
-        <h3 id="info-title"></h3>
-        <p id="info-description"></p>
-        <p><strong>Day:</strong> <span id="info-day"></span></p>
-        <p><strong>Time:</strong> <span id="info-time"></span></p>
-        <p><strong>Audience:</strong> <span id="info-audience"></span></p>
-        <p><strong>Age Group:</strong> <span id="info-age-group"></span></p>
-    </div>
-</div>
-
-    <!-- Contact Form Modal -->
-    <div id="contact-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-contact">&times;</span>
-            <h3>Contact Group</h3>
-            <form id="contact-form">
-                <input type="hidden" id="contact-group-id">
-                <div class="form-group">
-                    <label for="contact-name">Name:</label>
-                    <input type="text" id="contact-name" name="name" required>
+        <!-- Call to Action Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="cta-title">Ready to Connect?</h2>
+                    <p class="cta-subtitle">
+                        Join other believers in finding community. Whether you're looking to join or start a community, let's get connected!
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="find-comm.html" class="btn btn-primary-large">
+                            <i class="fas fa-compass"></i>
+                            Explore Communities
+                        </a>
+                        <a href="add-group.html" class="btn btn-secondary-large">
+                            <i class="fas fa-plus-circle"></i>
+                            Add Your Community
+                        </a>
+                    </div>
                 </div>
-                    <div class="form-group">
-                    <label for="contact-phone">Phone:</label>
-                    <input type="text" id="contact-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3 class="footer-title">LIFEGATE Denver</h3>
+                        <p class="footer-tagline">We Exist to See People Made Alive in Christ</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/LifeGatedenver/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="https://www.instagram.com/LifeGatedenver/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@LIFEGATEDENVER" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 LIFEGATE Denver. Built with love for our church family.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="contact-email">Email:</label>
-                    <input type="email" id="contact-email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-message">Message:</label>
-                    <textarea id="contact-message" rows="4" name="message" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-        </div>
+            </div>
+        </footer>
     </div>
 
-    <div id="groupmsg-confirmation-modal" class="modal">
-    <div class="modal-content">
-        <span class="close-groupmsg-confirmation">&times;</span>
-        <h3 id="info-title">Your message has been sent!</h3>
-        <p id="groupmsg-description-text">You should hear back from the community leader in the next 
-            few days.  Please keep an eye on your junk folder as messages often end up there.
-        <br><br>Thank you for reaching out!
-        </p>
-    </div>
-    </div>
-
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBaD2QPffJ15fk2E3VtQjDMRZStj1dMAlg">
-</script>
-
-<script type="module">
-  import { initMap } from './script.js';
-
-  // Wait until Google Maps is available, then call initMap
-  function waitForGoogleMaps() {
-    return new Promise((resolve) => {
-      if (window.google && window.google.maps) {
-        resolve();
-      } else {
-        const interval = setInterval(() => {
-          if (window.google && window.google.maps) {
-            clearInterval(interval);
-            resolve();
-          }
-        }, 100);
-      }
-    });
-  }
-
-  waitForGoogleMaps().then(() => {
-    initMap();
-  });
-</script>
-
-
-
-    </div>
+    <script src="splash-script.js"></script>
 </body>
 </html>

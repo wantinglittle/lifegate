@@ -88,6 +88,7 @@ main {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  flex: 1;
 }
 
 /* Main Content Layout */
@@ -237,8 +238,14 @@ main {
 }
 
 .group-card.show {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.group-card.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 1.0s ease, transform 1.0s ease;
 }
 
 .group-card:hover {
@@ -355,7 +362,6 @@ main {
     font-size: 34px;  
     font-weight: bold;
     cursor: pointer;
-    
 }
 
 .close-groupmsg-confirmation {
@@ -375,8 +381,6 @@ main {
 .more-info-btn:hover {
     background-color: rgb(82, 106, 214);
 }
-
-
 
 .view-map-btn {
     background: #17a2b8;
