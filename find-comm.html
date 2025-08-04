@@ -93,7 +93,9 @@
 
     <footer>
       <div><h4>Questions or suggestions about this site or about Lifegate Community?</h4></div>
-      <div class="msg-church"><h4>Click here to message the church</h4></div>
+      <div class="msg-church">
+        <h4 id="open-church-modal">Click here to message the church</h4>
+      </div>
     </footer>
 
     <!-- Full Description Modal -->
@@ -154,21 +156,21 @@
       <div class="modal-content">
         <span class="close-contact">&times;</span>
         <h3>Contact Church</h3>
-        <form id="contact-form">
+        <form id="contact-church-form">
           <div class="form-group">
-            <label for="contact-name">Name:</label>
-            <input type="text" id="contact-name" name="name" required>
+            <label for="contact-church-name">Name:</label>
+            <input type="text" id="contact-church-name" name="name" required>
           </div>
           <div class="form-group">
-            <label for="contact-phone">Phone:</label>
-            <input type="text" id="contact-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
+            <label for="contact-church-phone">Phone:</label>
+            <input type="text" id="contact-church-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
           </div>
           <div class="form-group">
-            <label for="contact-email">Email:</label>
-            <input type="email" id="contact-email" name="email" required>
+            <label for="contact-church-email">Email:</label>
+            <input type="email" id="contact-church-email" name="email" required>
           </div>
           <div class="form-group">
-            <label for="contact-message">Message:</label>
+            <label for="contact-church-message">Message:</label>
             <textarea id="contact-message" rows="4" name="message" required></textarea>
           </div>
           <button type="submit">Send Message</button>

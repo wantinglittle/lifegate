@@ -459,7 +459,8 @@ main {
     border-color: #667eea;
 }
 
-#contact-form button {
+#contact-form button, 
+#contact-church-form button {
     background: #667eea;
     color: white;
     border: none;

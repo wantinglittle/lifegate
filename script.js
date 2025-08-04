@@ -261,9 +261,14 @@ function geocodeAddress(address) {
 document.querySelector(".close-info").onclick = () => {
   document.getElementById("info-modal").style.display = "none";
 };
-document.querySelector(".close-contact").onclick = () => {
-  document.getElementById("contact-modal").style.display = "none";
-};
+document.querySelectorAll(".close-contact").forEach(el => {
+  el.addEventListener("click", () => {
+    document.querySelectorAll(".modal").forEach(modal => {
+      modal.style.display = "none";
+    });
+  });
+});
+
 window.onclick = (e) => {
   if (e.target.classList.contains("modal")) {
     e.target.style.display = "none";
@@ -324,4 +329,46 @@ phoneInput.addEventListener("input", (e) => {
   }
 
   e.target.value = formatted;
+});
+
+document.getElementById("open-church-modal").addEventListener("click", () => {
+  document.getElementById("contact-church").style.display = "block";
+});
+
+
+// Contact the church via EmailJS
+document.getElementById("contact-church-form").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const name = document.querySelector("#contact-church-form #contact-church-name").value.trim();
+  const email = document.querySelector("#contact-church-form #contact-church-email").value.trim();
+  const phone = document.querySelector("#contact-church-form #contact-church-phone").value.trim();
+  const message = document.querySelector("#contact-church-form #contact-church-message").value.trim();
+
+  if (!name || !email || !message) {
+    alert("Please fill out all required fields.");
+    return;
+  }
+
+  try {
+    await emailjs.send("service_fmkha6h", "template_9hiiteh", {
+      name,
+      email,
+      phone,
+      message,
+      group_title: "Message to Church",
+      to_email: "lifegatecommunitywebsite@gmail.com" // Replace with your actual email
+    });
+
+    document.getElementById("contact-church").style.display = "none";
+    document.getElementById("groupmsg-confirmation-modal").style.display = "block";
+    this.reset();
+  } catch (error) {
+    console.error("EmailJS error:", error);
+    alert("There was an error sending your message. Please try again later.");
+  }
+
+  document.querySelector(".close-groupmsg-confirmation").addEventListener("click", function () {
+    document.getElementById("groupmsg-confirmation-modal").style.display = "none";
+  });
 });
