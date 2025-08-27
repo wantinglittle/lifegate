@@ -25,8 +25,8 @@ const communities = [
         animationClass: "slide-right"
     },
     {
-        title: "Self-Care",
-        description: "Stay healthy and build community through regular exercise meetups",
+        title: "LIFEStyle",
+        description: "Support for the shared walk of everyday living in both regular and unique seasons of life",
         icon: "fas fa-running",
         iconColor: "green",
         imageUrl: "images/exercise.jpg",

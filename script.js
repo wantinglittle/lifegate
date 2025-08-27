@@ -21,7 +21,7 @@ let markers = [];
 let allGroups = [];
 
 const initialCenter = { lat: 39.7392, lng: -104.9903 };
-const initialZoom = 10;
+const initialZoom = 9;
 let geocoder;
 
 export async function initMap() {
@@ -116,6 +116,7 @@ async function renderGroups(groups, map, AdvancedMarkerElement) {
         <p><strong>Time:</strong> ${timeStr}</p>
         <p><strong>Audience:</strong> ${group.audience || "N/A"}</p>
         <p><strong>Age Group:</strong> ${group.ageGroup || "N/A"}</p>
+        <p><strong>City:</strong> ${group.city || "N/A"}</p>
         <button class="more-info-btn" data-index="${index}">More Info</button>
         <button class="contact-btn" data-title="${group.title || ""}" data-email="${group.contactEmail || ""}">Contact</button>
         <button class="view-on-map-btn" data-id="${group.id}">View on Map</button>

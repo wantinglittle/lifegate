@@ -13,6 +13,15 @@
     });
   </script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  
+  <!-- Light theme (black icon) -->
+  <link rel="icon" href="/images/favicon-black.svg" media="(prefers-color-scheme: light)" type="image/svg+xml">
+
+  <!-- Dark theme (white icon) -->
+  <link rel="icon" href="/images/favicon-white.svg" media="(prefers-color-scheme: dark)" type="image/svg+xml">
+
+  <!-- Fallback favicon -->
+  <link rel="icon" href="images/favicon-orange.svg" type="image/svg+xml">
 
   <style>
     .back-button {
@@ -239,8 +248,8 @@
         </div>
 
         <div class="form-group">
-          <label for="group-description">Description *</label>
-          <textarea id="group-description" name="description" rows="4" required placeholder="Describe your community's purpose, activities, and what newcomers can expect..."></textarea>
+          <label for="group-description">Description (500 character max)*</label>
+          <textarea id="group-description" maxlength="500" name="description" rows="4" required placeholder="Describe your community's purpose, activities, and what newcomers can expect..."></textarea>
         </div>
 
         <div class="form-row">
@@ -349,10 +358,10 @@
           This helps people find your location and places your group on the map
         </small>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="additional-info">Additional Information</label>
           <textarea id="additional-info" name="additionalInfo" rows="3" placeholder="Any other details about your group, special requirements, or helpful information..."></textarea>
-        </div>
+        </div> -->
 
         <div class="g-recaptcha" data-sitekey="6Lc4OpArAAAAAB28oRvNoDbwJS0Z4N71F6zxFcGe"></div>
 
