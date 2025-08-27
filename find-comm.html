@@ -45,8 +45,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- Modern Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Striking Modern Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <!-- Link to your CSS file -->
   <link href="style.css" rel="stylesheet" type="text/css" />
@@ -121,166 +121,361 @@
   </script>
 </head>
 <body>
-  <div class="main-bg">
+  <!-- Animated Background -->
+  <div class="bg-animation">
+    <div class="floating-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+      <div class="shape shape-5"></div>
+      <div class="shape shape-6"></div>
+    </div>
+    <div class="gradient-orbs">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+  </div>
+
+  <div class="main-container">
     <div class="wrapper">
-      <header>
-        <div class="header-logo">
-          <a href="https://lifegatedenver.com/"><img src="images/lg_logo.svg" alt="Lifegate Church" height="45"></a>
-        </div>
-        <div class="header-content">
-          <h1>Lifegate Community</h1>
-          <p>Find and connect with church community</p>
-        </div>
-        <div class="header-actions">
-          <a href="add-group.html" class="add-group-btn">Add My Community</a>
+      <header class="hero-header">
+        <div class="header-glow"></div>
+        <div class="header-content-wrapper">
+          <div class="header-logo">
+            <a href="https://lifegatedenver.com/">
+              <div class="logo-container">
+                <img src="images/lg_logo.svg" alt="Lifegate Church" height="50">
+                <div class="logo-pulse"></div>
+              </div>
+            </a>
+          </div>
+          <div class="header-content">
+            <h1 class="hero-title">
+              <span class="title-main">LIFEGATE</span>
+              <span class="title-sub">Community</span>
+              <div class="title-underline"></div>
+            </h1>
+            <p class="hero-subtitle">Discover • Connect • Grow Together</p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number" id="total-communities">25+</span>
+                <span class="stat-label">Active Communities</span>
+              </div>
+              <div class="stat-divider"></div>
+              <div class="stat-item">
+                <span class="stat-number">500+</span>
+                <span class="stat-label">Members Connected</span>
+              </div>
+            </div>
+          </div>
+          <div class="header-actions">
+            <a href="add-group.html" class="cta-button">
+              <span>Add Community</span>
+              <div class="button-glow"></div>
+            </a>
+          </div>
         </div>
       </header>
 
       <main>
         <!-- Search, Filter and Map Section -->
         <section class="main-content">
-          <div class="search-sidebar">
+          <div class="search-panel">
+            <div class="panel-header">
+              <h3>Find Your Community</h3>
+              <div class="header-decoration"></div>
+            </div>
+            
             <div class="search-group">
-              <label for="location-search">📍 Location Search:</label>
-              <input type="text" id="location-search" placeholder="Enter zip code">
-              <button id="search-location-btn">Search</button>
+              <label for="location-search">
+                <span class="label-icon">📍</span>
+                <span class="label-text">Location</span>
+              </label>
+              <div class="input-container">
+                <input type="text" id="location-search" placeholder="Enter zip code">
+                <button id="search-location-btn" class="search-btn">
+                  <span>Search</span>
+                </button>
+              </div>
             </div>
 
-            <div class="filter-group">
-              <label for="day-filter">📅 Day:</label>
-              <select id="day-filter">
-                <option value="">All Days</option>
-                <option value="Monday">Monday</option>
-                <option value="Tuesday">Tuesday</option>
-                <option value="Wednesday">Wednesday</option>
-                <option value="Thursday">Thursday</option>
-                <option value="Friday">Friday</option>
-                <option value="Saturday">Saturday</option>
-                <option value="Sunday">Sunday</option>
-              </select>
+            <div class="filters-grid">
+              <div class="filter-group">
+                <label for="day-filter">
+                  <span class="label-icon">📅</span>
+                  <span class="label-text">Day</span>
+                </label>
+                <select id="day-filter" class="modern-select">
+                  <option value="">All Days</option>
+                  <option value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label for="audience-filter">
+                  <span class="label-icon">👥</span>
+                  <span class="label-text">Audience</span>
+                </label>
+                <select id="audience-filter" class="modern-select">
+                  <option value="">All</option>
+                  <option value="Men">Men</option>
+                  <option value="Women">Women</option>
+                </select>
+              </div>
+
+              <div class="filter-group">
+                <label for="age-filter">
+                  <span class="label-icon">🎯</span>
+                  <span class="label-text">Age Group</span>
+                </label>
+                <select id="age-filter" class="modern-select">
+                  <option value="">All Ages</option>
+                  <option value="Kids">Kids</option>
+                  <option value="Teens">Teens</option>
+                  <option value="Adult">Adult</option>
+                </select>
+              </div>
             </div>
 
-            <div class="filter-group">
-              <label for="audience-filter">👥 Audience:</label>
-              <select id="audience-filter">
-                <option value="">All</option>
-                <option value="Men">Men</option>
-                <option value="Women">Women</option>
-              </select>
-            </div>
-
-            <div class="filter-group">
-              <label for="age-filter">🎯 Age Group:</label>
-              <select id="age-filter">
-                <option value="">All Ages</option>
-                <option value="Kids">Kids</option>
-                <option value="Teens">Teens</option>
-                <option value="Adult">Adult</option>
-              </select>
-            </div>
-
-            <div class="filter-buttons">
-              <button id="apply-filters">Apply Filters</button>
-              <button id="clear-filters">Clear Filters</button>
+            <div class="filter-actions">
+              <button id="apply-filters" class="filter-btn apply-btn">Apply Filters</button>
+              <button id="clear-filters" class="filter-btn clear-btn">
+                <span>Clear All</span>
+              </button>
             </div>
           </div>
 
-          <div class="map-container">
-            <div id="map" style="height: 500px; width: 100%;"></div>
+          <div class="map-section">
+            <div class="map-header">
+              <h3>Community Map</h3>
+              <div class="map-controls">
+                <button class="map-control-btn" id="zoom-to-fit">Fit All</button>
+                <button class="map-control-btn" id="my-location">My Location</button>
+              </div>
+            </div>
+            <div class="map-container">
+              <div id="map"></div>
+              <div class="map-overlay">
+                <div class="map-legend">
+                  <div class="legend-item">
+                    <div class="legend-dot active"></div>
+                    <span>Active Groups</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-dot meeting"></div>
+                    <span>Meeting Today</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
         <!-- Groups Listing Section -->
-        <section class="groups-section">
-          <h2>Communities (<span id="group-count">0</span>)</h2>
-          <div id="groups-container"></div>
+        <section class="communities-section">
+          <div class="section-header">
+            <div class="header-content">
+              <h2 class="section-title">
+                <span class="title-text">Active Communities</span>
+                <span class="community-count">(<span id="group-count">0</span>)</span>
+              </h2>
+              <p class="section-subtitle">Join a community that fits your journey</p>
+            </div>
+            <div class="view-controls">
+              <button class="view-btn active" data-view="grid">
+                <span>Grid</span>
+              </button>
+              <button class="view-btn" data-view="list">
+                <span>List</span>
+              </button>
+            </div>
+          </div>
+          <div id="groups-container" class="communities-grid"></div>
+          
+          <!-- Loading State -->
+          <div class="loading-state" id="loading-communities">
+            <div class="loading-spinner"></div>
+            <p>Loading communities...</p>
+          </div>
+
+          <!-- Empty State -->
+          <div class="empty-state" id="no-communities" style="display: none;">
+            <div class="empty-icon">🔍</div>
+            <h3>No communities found</h3>
+            <p>Try adjusting your filters or search criteria</p>
+            <button class="clear-filters-btn" onclick="document.getElementById('clear-filters').click()">
+              Clear Filters
+            </button>
+          </div>
         </section>
       </main>
 
-      <footer>
-        <div><h4>Questions or suggestions about this site or about Lifegate Community?</h4></div>
-        <div class="msg-church">
-          <h4 id="open-church-modal">Click here to message the church</h4>
+      <footer class="modern-footer">
+        <div class="footer-content">
+          <div class="footer-main">
+            <h4>Questions about LIFEGATE Community?</h4>
+            <p>We're here to help you find your place in our church family</p>
+          </div>
+          <button class="contact-church-btn" id="open-church-modal">
+            <span>Contact Church</span>
+            <div class="btn-shine"></div>
+          </button>
         </div>
+        <div class="footer-decoration"></div>
       </footer>
 
+      <!-- Enhanced Modals -->
       <!-- Full Description Modal -->
       <div id="info-modal" class="modal">
-        <div class="modal-content">
-          <span class="close-info">&times;</span>
-          <h3 id="info-title"></h3>
-          <p id="info-description"></p>
-          <p><strong>Day:</strong> <span id="info-day"></span></p>
-          <p><strong>Time:</strong> <span id="info-time"></span></p>
-          <p><strong>Audience:</strong> <span id="info-audience"></span></p>
-          <p><strong>Age Group:</strong> <span id="info-age-group"></span></p>
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modern-modal">
+          <button class="close-btn close-info">
+            <span></span>
+            <span></span>
+          </button>
+          <div class="modal-header">
+            <h3 id="info-title"></h3>
+          </div>
+          <div class="modal-body">
+            <p id="info-description"></p>
+            <div class="info-grid">
+              <div class="info-item">
+                <span class="info-label">Day</span>
+                <span class="info-value" id="info-day"></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Time</span>
+                <span class="info-value" id="info-time"></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Audience</span>
+                <span class="info-value" id="info-audience"></span>
+              </div>
+              <div class="info-item">
+                <span class="info-label">Age Group</span>
+                <span class="info-value" id="info-age-group"></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Contact Form Modal -->
       <div id="contact-modal" class="modal">
-        <div class="modal-content">
-          <span class="close-contact">&times;</span>
-          <h3>Contact Leader</h3>
-          <form id="contact-form">
-            <input type="hidden" id="contact-group-id">
-            <div class="form-group">
-              <label for="contact-name">Name:</label>
-              <input type="text" id="contact-name" name="name" required>
-            </div>
-            <div class="form-group">
-              <label for="contact-phone">Phone:</label>
-              <input type="text" id="contact-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
-            </div>
-            <div class="form-group">
-              <label for="contact-email">Email:</label>
-              <input type="email" id="contact-email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="contact-message">Message:</label>
-              <textarea id="contact-message" rows="4" name="message" required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-          </form>
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modern-modal">
+          <button class="close-btn close-contact">
+            <span></span>
+            <span></span>
+          </button>
+          <div class="modal-header">
+            <h3>Contact Community Leader</h3>
+            <p>Get connected with this community</p>
+          </div>
+          <div class="modal-body">
+            <form id="contact-form" class="modern-form">
+              <input type="hidden" id="contact-group-id">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-name">Full Name</label>
+                  <input type="text" id="contact-name" name="name" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-phone">Phone (Optional)</label>
+                  <input type="text" id="contact-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
+                </div>
+                <div class="form-group">
+                  <label for="contact-email">Email Address</label>
+                  <input type="email" id="contact-email" name="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-message">Message</label>
+                <textarea id="contact-message" rows="4" name="message" required placeholder="Tell them a bit about yourself and why you're interested in joining..."></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                <span>Send Message</span>
+                <div class="btn-shine"></div>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 
-      <!-- Confirmation Modal -->
+      <!-- Success Modal -->
       <div id="groupmsg-confirmation-modal" class="modal">
-        <div class="modal-content">
-          <span class="close-groupmsg-confirmation">&times;</span>
-          <h3 id="info-title">Your message has been sent!</h3>
-          <p id="groupmsg-description-text">
-            You should hear back from the community leader in the next few days. Please keep an eye on your junk folder as messages often end up there.
-            <br><br>Thank you for reaching out!
-          </p>
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modern-modal success-modal">
+          <button class="close-btn close-groupmsg-confirmation">
+            <span></span>
+            <span></span>
+          </button>
+          <div class="modal-header">
+            <div class="success-icon">✨</div>
+            <h3>Message Sent Successfully!</h3>
+          </div>
+          <div class="modal-body">
+            <p id="groupmsg-description-text">
+              Your message has been delivered to the community leader. You should hear back within the next few days. 
+              <br><br>
+              <strong>Pro tip:</strong> Check your spam folder as replies sometimes end up there.
+              <br><br>
+              Thank you for taking this step toward community!
+            </p>
+          </div>
         </div>
       </div>
 
       <!-- Contact Church Modal -->
       <div id="contact-church" class="modal">
-        <div class="modal-content">
-          <span class="close-contact">&times;</span>
-          <h3>Contact Church</h3>
-          <form id="contact-church-form">
-            <div class="form-group">
-              <label for="contact-church-name">Name:</label>
-              <input type="text" id="contact-church-name" name="name" required>
-            </div>
-            <div class="form-group">
-              <label for="contact-church-phone">Phone:</label>
-              <input type="text" id="contact-church-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
-            </div>
-            <div class="form-group">
-              <label for="contact-church-email">Email:</label>
-              <input type="email" id="contact-church-email" name="email" required>
-            </div>
-            <div class="form-group">
-              <label for="contact-church-message">Message:</label>
-              <textarea id="contact-message" rows="4" name="message" required></textarea>
-            </div>
-            <button type="submit">Send Message</button>
-          </form>
+        <div class="modal-backdrop"></div>
+        <div class="modal-content modern-modal">
+          <button class="close-btn close-contact">
+            <span></span>
+            <span></span>
+          </button>
+          <div class="modal-header">
+            <h3>Contact LIFEGATE Church</h3>
+            <p>We'd love to hear from you</p>
+          </div>
+          <div class="modal-body">
+            <form id="contact-church-form" class="modern-form">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-church-name">Full Name</label>
+                  <input type="text" id="contact-church-name" name="name" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="contact-church-phone">Phone (Optional)</label>
+                  <input type="text" id="contact-church-phone" name="phone" placeholder="(555) 123-4567" maxlength="14">
+                </div>
+                <div class="form-group">
+                  <label for="contact-church-email">Email Address</label>
+                  <input type="email" id="contact-church-email" name="email" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="contact-church-message">Message</label>
+                <textarea id="contact-message" rows="4" name="message" required placeholder="How can we help you? Questions about our community, services, or anything else?"></textarea>
+              </div>
+              <button type="submit" class="submit-btn">
+                <span>Send Message</span>
+                <div class="btn-shine"></div>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
 
